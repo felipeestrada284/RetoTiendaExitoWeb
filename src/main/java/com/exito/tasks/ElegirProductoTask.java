@@ -42,7 +42,7 @@ public class ElegirProductoTask implements Task {
                 WaitUntil.the(TXT_CABECEROS, isVisible()).forNoMoreThan(30).seconds()
         );
 
-        for (int i = 1; i <= 3 ; i++) {
+        for (int i = 1; i <= 5 ; i++) {
 
             actor.attemptsTo(
                     SeleccionarProductoAleatorio.on(i),
@@ -76,8 +76,6 @@ public class ElegirProductoTask implements Task {
                     WaitUntil.the(BTN_COMPRA_RAPIDA, isVisible()).forNoMoreThan(10).seconds()
             );
         }
-
-
     }
 
     public static ElegirProductoTask on(){

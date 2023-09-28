@@ -1,10 +1,6 @@
 package com.exito.userInterfaces;
 
-import com.exito.utils.DatosExcel;
 import net.serenitybdd.screenplay.targets.Target;
-import org.openqa.selenium.By;
-
-import java.io.IOException;
 
 public class ProductosUI {
 

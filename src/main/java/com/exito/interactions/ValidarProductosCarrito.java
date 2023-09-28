@@ -14,20 +14,20 @@ import static com.exito.userInterfaces.ProductosUI.TXT_VALOR_TOTAL_PRODUCTO_CARR
 
 public class ValidarProductosCarrito implements Interaction {
 
-    public String nombresProductos;
-    public String cantidadesProductos;
-    public String valorTotalProducto;
+    public static String nombresProductos;
+    public static String cantidadesProductos;
+    public static String valorTotalProducto;
     public static String totalPreciosProductos;
     @Override
     public <T extends Actor> void performAs(T actor) {
 
         DatosExcel datos = new DatosExcel();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             try {
-                String nombresProductos = datos.leerDatoExcel("Hoja de datos","data.xlsx", i, 0);
-                String cantidadesProductos = datos.leerDatoExcel("Hoja de datos","data.xlsx",i,2);
-                String valorTotalProducto = datos.leerDatoExcel("Hoja de datos","data.xlsx",i,3);
+                nombresProductos = datos.leerDatoExcel("Hoja de datos","data.xlsx", i, 0);
+                cantidadesProductos = datos.leerDatoExcel("Hoja de datos","data.xlsx",i,2);
+                valorTotalProducto = datos.leerDatoExcel("Hoja de datos","data.xlsx",i,3);
 
                 totalPreciosProductos ="$ "+valorTotalProducto;
 

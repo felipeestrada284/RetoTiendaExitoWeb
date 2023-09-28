@@ -15,7 +15,6 @@ import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisi
 
 public class CantidadProductosAleatorio implements Interaction {
 
-    public int cantidadAleatoria;
     private int cantidadMin;
     private int cantidadMax;
 

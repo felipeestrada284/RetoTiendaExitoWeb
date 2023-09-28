@@ -1,7 +1,5 @@
 package com.exito.interactions;
 
-
-import com.exito.utils.VariableGlobal;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
@@ -35,12 +33,6 @@ public class SeleccionarProductoAleatorio implements Interaction {
         List<WebElementFacade> precioProducto = TXT_PRECIO_PRODUCTO.resolveAllFor(actor);
         List<WebElementFacade> btnCompraRapida = BTN_COMPRA_RAPIDA.resolveAllFor(actor);
 
-        /*if (numeroAleatorio.isEmpty()) {
-            // Llena la lista de índices no repetidos si está vacía
-            for (int i = 1; i < btnCompraRapida.size(); i++) {
-                numeroAleatorio.add(i);
-            }
-        }*/
 
         // Llena la lista de índices no repetidos si está vacía
         for (int i = 1; i < btnCompraRapida.size(); i++) {
@@ -50,7 +42,6 @@ public class SeleccionarProductoAleatorio implements Interaction {
         // Elige un índice aleatorio de la lista de índices no repetidos
         numRandom = numeroAleatorio.remove(random.nextInt(numeroAleatorio.size()));
 
-        //numRandom = indiceElegido;
         productoAleatorio = nombreProducto.get(numRandom).getText();
         valorProducto = precioProducto.get(numRandom).getText();
 
