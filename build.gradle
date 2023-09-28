@@ -1,0 +1,68 @@
+apply plugin: 'java-library'
+apply plugin: "net.serenity-bdd.serenity-gradle-plugin"
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+defaultTasks 'clear', 'test', 'aggregate'
+group 'com.exito'
+version '1.0-SNAPSHOT'
+
+
+repositories {
+    mavenCentral()
+}
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+}
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-gradle-plugin:3.3.2"
+    }
+}
+dependencies {
+    implementation 'net.serenity-bdd:serenity-junit:2.0.80' //para escribir pruebas
+    implementation 'net.serenity-bdd:serenity-cucumber:1.9.45' //para escribir pruebas en estilo Gherkin
+    implementation 'net.serenity-bdd:serenity-core:2.0.80' //núcleo de Serenity
+    implementation 'net.serenity-bdd:serenity-ensure:2.0.80' //para escribir validaciones
+
+    implementation 'org.slf4j:slf4j-simple:1.7.7' //para registrar información en tu aplicación
+    testImplementation 'junit:junit:4.13.2' // JUnit para escribir pruebas unitarias
+    implementation group: 'net.serenity-bdd', name: 'serenity-screenplay', version: '2.0.80' //para escribir pruebas más estructuradas y expresivas
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.3' //un marco de registro flexible
+    implementation 'io.github.bonigarcia:webdrivermanager:5.5.0' //para gestionar autodescarga del driver
+
+    //para leer, escribir y manejar archivos de Excel
+    implementation group: 'org.apache.poi', name: 'poi', version: '3.17'
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
+
+}
+
+test {
+    useJUnit {
+        // Incluye todas las clases de pruebas que cumplan con el patrón "**/*"
+        include "**/*";
+        gradle.startParameter.continueOnFailure = true;
+        // Muestra las salidas estándar de las pruebas en la consola
+        testLogging.showStandardStreams = true;
+        // Establece las propiedades del sistema para las pruebas
+        systemProperties System.getProperties();
+        // Establece una propiedad del sistema llamada "cucumber.filter.tags" con el valor de la propiedad "cucumber.filter.tags"
+        systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags");
+    }
+}
+
+
+serenity{
+    testRoot="com.exito"
+    requirementsBaseDir=["src/test/resources/features/"]
+    reports=["single-page-html"]
+}
